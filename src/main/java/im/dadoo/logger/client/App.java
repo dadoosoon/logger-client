@@ -40,7 +40,7 @@ public class App {
       
       public Message createMessage(Session session) throws JMSException {
         Message message = session.createObjectMessage(i);
-        message.set
+        return message;
       }
     });
   }
