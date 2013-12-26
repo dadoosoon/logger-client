@@ -23,6 +23,9 @@
     <property name="defaultDestination" ref="queue" />
   </bean>
   
+  <!-- mapper -->
+  <bean id="mapper" class="org.codehaus.jackson.map.ObjectMapper" />
+  
   <context:annotation-config />
   <context:component-scan base-package="im.dadoo" />
 </beans>
