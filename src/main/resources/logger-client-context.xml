@@ -12,8 +12,12 @@
   <bean id="activeMQConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
     <property name="brokerURL" value="tcp://mq.dadoo.im:61616?wireFormat.maxInactivityDuration=0"/>
   </bean>
+  <bean id="pooledConnectionFactory" class="org.apache.activemq.pool.PooledConnectionFactory">  
+    <property name="connectionFactory" ref="activeMQConnectionFactory"/>  
+    <property name="maxConnections" value="10"/>  
+  </bean>  
   <bean id="connectionFactory" class="org.springframework.jms.connection.SingleConnectionFactory">
-    <property name="targetConnectionFactory" ref="activeMQConnectionFactory" />
+    <property name="targetConnectionFactory" ref="pooledConnectionFactory" />
   </bean>
   <bean id="queue" class="org.apache.activemq.command.ActiveMQQueue">
     <constructor-arg value="queue"/>
