@@ -10,7 +10,7 @@
 ">
 
   <bean id="activeMQConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
-    <property name="brokerURL" value="tcp://mq.dadoo.im:61616?wireFormat.maxInactivityDuration=30000000"/>
+    <property name="brokerURL" value="tcp://mq.dadoo.im:61616?wireFormat.maxInactivityDuration=0"/>
   </bean>
   <bean id="connectionFactory" class="org.springframework.jms.connection.SingleConnectionFactory">
     <property name="targetConnectionFactory" ref="activeMQConnectionFactory" />
