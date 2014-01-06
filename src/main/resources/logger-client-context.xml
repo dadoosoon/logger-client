@@ -10,7 +10,7 @@
 ">
 
   <bean id="activeMQConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
-    <property name="brokerURL" value="failover:(tcp://mq.dadoo.im:61616)?maxReconnectDelay=1000"/>
+    <property name="brokerURL" value="failover:(tcp://mq.dadoo.im:61616)"/>
   </bean>
   <bean id="pooledConnectionFactory" class="org.apache.activemq.pool.PooledConnectionFactory">  
     <property name="connectionFactory" ref="activeMQConnectionFactory"/>  
