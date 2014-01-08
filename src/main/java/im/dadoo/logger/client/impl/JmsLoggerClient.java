@@ -11,7 +11,6 @@ import im.dadoo.logger.client.LoggerClient;
 import im.dadoo.mq.producer.Producer;
 import java.util.HashMap;
 import java.util.Map;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +31,7 @@ public class JmsLoggerClient implements LoggerClient {
       Map<String, Object> selector = new HashMap<>();
       selector.put("type", "log");
       this.producer.produce(log, selector);
-      logger.info(String.format("发送消息成功,消息类型为:log,消息内容为:%s", log.toString()));
+      logger.info(String.format("发送日志成功,消息内容为:%s", log.toString()));
     }
   }
 }
