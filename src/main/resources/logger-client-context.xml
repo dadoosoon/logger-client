@@ -9,27 +9,7 @@
           http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-3.2.xsd
 ">
 
-  <bean id="activeMQConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
-    <property name="brokerURL" value="failover:(tcp://mq.dadoo.im:61616)"/>
-  </bean>
-  <bean id="pooledConnectionFactory" class="org.apache.activemq.pool.PooledConnectionFactory">  
-    <property name="connectionFactory" ref="activeMQConnectionFactory"/>  
-    <property name="maxConnections" value="100"/>  
-  </bean>  
-  <bean id="connectionFactory" class="org.springframework.jms.connection.SingleConnectionFactory">
-    <property name="targetConnectionFactory" ref="pooledConnectionFactory" />
-  </bean>
-  <bean id="queue" class="org.apache.activemq.command.ActiveMQQueue">
-    <constructor-arg value="queue"/>
-  </bean>
-  <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
-    <property name="connectionFactory" ref="connectionFactory" />
-    <property name="defaultDestination" ref="queue" />
-  </bean>
+  <!-- mq producer -->
+  <bean id="producer" class="im.dadoo.mq.producer.impl.ActiveMQProducer" />
   
-  <!-- mapper -->
-  <bean id="mapper" class="org.codehaus.jackson.map.ObjectMapper" />
-  
-  <context:annotation-config />
-  <context:component-scan base-package="im.dadoo" />
 </beans>
