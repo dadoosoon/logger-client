@@ -16,4 +16,6 @@ public interface LoggerClient {
   
   public void send(final Log log);
   
+  public void close();
+  
 }
