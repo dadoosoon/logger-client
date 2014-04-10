@@ -33,8 +33,6 @@ public class DefaultLoggerClient implements LoggerClient {
   
   private static final Logger logger = LoggerFactory.getLogger(DefaultLoggerClient.class);
   
-  //private static final String SERVER_URL = "http://localhost:8080/logger";
-  
   private final CloseableHttpAsyncClient httpClient;
   
   private final HttpPost post;
@@ -62,7 +60,6 @@ public class DefaultLoggerClient implements LoggerClient {
           HttpEntity entity = response.getEntity();
           try {
             String rs = EntityUtils.toString(entity);
-            logger.info(String.format("从日志服务器接收到的内容:%s", rs));
             Boolean result = mapper.readValue(rs, Boolean.class);
             if (result) {
               logger.info(String.format("日志已接收,基本信息:%s", log.toPropertyString()));
