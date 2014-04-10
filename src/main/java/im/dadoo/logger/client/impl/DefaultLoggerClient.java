@@ -12,7 +12,6 @@ import im.dadoo.log.Log;
 import im.dadoo.logger.client.LoggerClient;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.util.logging.Level;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.ParseException;
@@ -34,7 +33,7 @@ public class DefaultLoggerClient implements LoggerClient {
   
   private static final Logger logger = LoggerFactory.getLogger(DefaultLoggerClient.class);
   
-  private static final String SERVER_URL = "http://localhost:8084/logger";
+  //private static final String SERVER_URL = "http://localhost:8080/logger";
   
   private final CloseableHttpAsyncClient httpClient;
   
@@ -42,9 +41,9 @@ public class DefaultLoggerClient implements LoggerClient {
   
   private final ObjectMapper mapper;
   
-  public DefaultLoggerClient() {
+  public DefaultLoggerClient(String host) {
     this.httpClient = HttpAsyncClients.createDefault();
-    this.post = new HttpPost(SERVER_URL);
+    this.post = new HttpPost(host);
     this.post.setHeader(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
     this.mapper = new ObjectMapper();
   }
@@ -96,6 +95,7 @@ public class DefaultLoggerClient implements LoggerClient {
     }
   }
 
+  @Override
   public void close() {
     try {
       this.httpClient.close();
