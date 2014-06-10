@@ -60,6 +60,7 @@ public class DefaultLoggerClient implements LoggerClient {
           HttpEntity entity = response.getEntity();
           try {
             String rs = EntityUtils.toString(entity);
+            logger.info(rs);
             Boolean result = mapper.readValue(rs, Boolean.class);
             if (result) {
               logger.info(String.format("日志已接收,基本信息:%s", log.toPropertyString()));
